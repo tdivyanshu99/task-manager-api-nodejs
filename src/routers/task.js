@@ -12,7 +12,7 @@ router.post('/tasks',auth , async(req,res)=>{
         await task.save();
         res.status(201).send(task); 
     }catch(e){
-        res.status(400).send(e);
+        res.status(401).send(e);
     }
 })
 
@@ -91,7 +91,7 @@ router.delete('/tasks/:id', auth, async(req,res)=>{
     try{
         const task = await Task.findOneAndDelete({_id:req.params.id,owner:req.user._id});
         if(!task){
-            return res.status(404).send();
+            return res.status(400).send();
         }
         res.send(task);
     }catch(e){
