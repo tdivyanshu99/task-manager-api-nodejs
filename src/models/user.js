@@ -51,6 +51,9 @@ const userSchema = new mongoose.Schema({
     }],
     avatar:{
         type:Buffer
+    },
+    avatarUrl:{
+        type:String
     }
 },{
     timestamps:true
@@ -99,7 +102,7 @@ userSchema.pre('save',async function(next){
     if(user.isModified('password')){
         user.password = await bcrypt.hash(user.password,8);
     }
-    console.log('just before saving...')
+    //console.log('just before saving...')
     next();
 })
 
