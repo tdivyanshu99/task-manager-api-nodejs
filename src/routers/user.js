@@ -164,13 +164,14 @@ router.delete('/users/me/avatar', auth, async (req, res) => {
 router.get('/users/:id/avatar', async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
-        if (!user || !user.avatar) {
+        if (!user || !user.avatarUrl) {
             throw new Error();
         }
         // we are always sending .png images
         res.set('Content-type', 'image/png');
-        res.send(user.avatar)
+        res.send(user.avatarUrl)
     } catch (e) {
+        console.log(e);
         res.status(400).send();
     }
 })
