@@ -92,7 +92,7 @@ test('Should upload avatar image', async ()=>{
 
     const user = await User.findById(userOneId);
     // check the data type of avatar to be of Buffer type.
-    expect(user.avatar).toEqual(expect.any(Buffer));
+    expect(user.avatarUrl).toEqual(expect.any(String));
 })
 
 test('Should update valid user fields', async ()=>{
